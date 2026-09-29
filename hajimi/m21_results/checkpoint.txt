@@ -1,0 +1,10 @@
+version=2
+M=21
+graph_classes=437034
+next=263
+record=5
+legal_total=96030564
+pair_total=12786612
+records_bytes=193396
+hist=3:12786558,5:54
+saved=3:100,5:54

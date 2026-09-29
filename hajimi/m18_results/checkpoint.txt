@@ -1,0 +1,8 @@
+version=1
+next=372
+record=5
+legal_total=5855322
+pair_total=3897018
+records_bytes=116390
+hist=3:3888130,5:8888
+saved=5:100

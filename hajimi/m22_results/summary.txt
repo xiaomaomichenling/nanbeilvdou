@@ -1,0 +1,8 @@
+COMPLETE_EXHAUSTIVE_M22 = NO
+graph_classes = 1876631
+graph_classes_processed = 447/1876631
+total_legal_states = 281969894
+total_qualifying_ordered_pairs = 129923358
+global_distance_histogram = 1:0,2:0,3:126426554,4:0,5:3488164,6:0,7:8640
+global_maximum_progress_distance = 7
+witnesses_attaining_maximum = 8640

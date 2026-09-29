@@ -1,0 +1,9 @@
+给后续模型：把 M=20、21、22 扩展为多核运行
+
+在 m18_complete_hard_search.cpp 的现有算法上修改，不改变 exhaustive universe：D、D* 均 legal，Hamming=3，source 的三条 mismatch 边各自 blocked；每个 qualifying ordered pair 都做 exact BFS。不得抽样或筛选候选。
+
+M=19 已用“单个 graph class 内按 source orientation 分工”的并行方案：Engine::prepare(workers) 并行预计算 legal；scan_source 保留完整 pair 枚举；scan_class_parallel19 给每个线程独立的 BFS stamp/queue，并用互斥锁写 record witness。每个 graph class 全部线程结束后才合并统计、写 checkpoint。扩展时可把这些 M==19 分支和函数改为适用于 M=20..22，默认使用 hardware_concurrency() 减 2（小机器留 1）。
+
+保留各 M 独立的 mXX_results、现有 checkpoint 的恢复语义和即时 flush 的 witness；不要清空已有结果。尤其不要修改 M=19 的现有进度。M=22 有 2^22 个状态，检查每线程 Engine 副本的内存开销。
+
+先编译，再做短自检：并行 legal 表与串行逐状态一致；对同一批 source 比较串行/并行 qualifying pair 数和距离直方图；验证记录文件与 checkpoint 不受自检影响。不要自动启动完整搜索。可参考 --M 19 --self-test 的 PARALLEL_SELF_TEST_OK 路径。
